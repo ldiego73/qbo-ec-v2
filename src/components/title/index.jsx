@@ -7,6 +7,10 @@ const TitleWrapper = styled.h2`
   font-size: 36px;
   line-height: 36px;
   color: ${TEXT_COLOR_PRIMARY};
+
+  ${({ flex }) => (flex ? "flex: 1;" : "")}
 `;
 
-export const Title = ({ value }) => <TitleWrapper>{value}</TitleWrapper>;
+export const Title = ({ value, flex }) => (
+  <TitleWrapper flex={flex}>{value}</TitleWrapper>
+);

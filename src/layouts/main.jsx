@@ -1,13 +1,43 @@
 import React from "react";
-import { Container } from "../components/container";
+import {
+  Container,
+  Content,
+  Footer,
+  Header,
+  BannerImage,
+  Banner,
+} from "../components";
 
-import { Footer } from "../components/footer";
-import { Header } from "../components/header";
+const images = [
+  <BannerImage
+    src="http://rioquintana.com/wp-content/uploads/2020/01/BANNER_1.png"
+    alt="Banner 1"
+  />,
+  <BannerImage
+    src="http://rioquintana.com/wp-content/uploads/2020/01/BANNER_2.png"
+    alt="Banner 2"
+  />,
+  <BannerImage
+    src="http://rioquintana.com/wp-content/uploads/2020/01/BANNER_3.png"
+    alt="Banner 3"
+  />,
+  <BannerImage
+    src="http://rioquintana.com/wp-content/uploads/2020/01/BANNER_4.png"
+    alt="Banner 4"
+  />,
+  <BannerImage
+    src="http://rioquintana.com/wp-content/uploads/2020/01/BANNER_5.png"
+    alt="Banner 5"
+  />,
+];
 
-export const Layout = ({ children }) => (
+export const Layout = ({ banner, children }) => (
   <>
     <Header />
-    <Container>{children}</Container>
+    {banner && <Banner images={images} />}
+    <Container>
+      <Content direction="column">{children}</Content>
+    </Container>
     <Footer />
   </>
 );

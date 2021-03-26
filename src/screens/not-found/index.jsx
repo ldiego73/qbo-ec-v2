@@ -1,8 +1,8 @@
 import React from "react";
 import { Layout } from "../../layouts/main";
 
-export const StoreScreen = () => (
+export const NotFoundScreen = () => (
   <Layout>
-    <h1>Store Screen</h1>
+    <h1>Not Found Page</h1>
   </Layout>
 );

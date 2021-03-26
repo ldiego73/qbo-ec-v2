@@ -1,13 +1,11 @@
-import { Button, Title } from "./components";
-import { Layout } from "./layouts";
+import { BrowserRouter as Router } from "react-router-dom";
+import { Navigation } from "./screens/navigation";
 
 function App() {
   return (
-    <Layout>
-      <Button value="Component Button" />
-      <Button color="secondary" value="Segundo Button" />
-      <Title value="Nuestras Ofertas" />
-    </Layout>
+    <Router>
+      <Navigation />
+    </Router>
   );
 }
 
