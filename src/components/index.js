@@ -6,3 +6,4 @@ export * from "./container";
 export * from "./content";
 export * from "./card/product";
 export * from "./banner";
+export * from "./delivery";

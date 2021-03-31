@@ -55,7 +55,7 @@ const CardProductPrice = styled.div`
   color: ${TEXT_COLOR_PRIMARY};
 `;
 
-export const CardProduct = ({ product, onAdd, onClicked }) => {
+export const CardProduct = ({ product, onAdd, onClicked, width, imageHeight }) => {
   const handleAdd = (p) => {
     if (typeof onAdd === "function") {
       onAdd(p);
@@ -69,8 +69,9 @@ export const CardProduct = ({ product, onAdd, onClicked }) => {
   };
 
   return (
-    <CardProductWrapper>
+    <CardProductWrapper width={width}>
       <CardProductImage
+        imageHeight={imageHeight}
         src={product.image}
         loading="lazy"
         onClick={() => handleClicked(product)}

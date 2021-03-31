@@ -1,19 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import { Redirect } from "react-router";
 import styled from "styled-components";
 import {
   TEXT_COLOR_PRIMARY,
   COLOR_GRAY_LIGHT,
 } from "../../../components/variables";
-
-import { ReactComponent as PromocionesIcon } from "../icons/promociones.svg";
-import { ReactComponent as DimSumIcon } from "../icons/dim-sum.svg";
-import { ReactComponent as MenuIcon } from "../icons/menu.svg";
-import { ReactComponent as SopasIcon } from "../icons/sopas.svg";
-import { ReactComponent as BebidasIcon } from "../icons/bebidas.svg";
-import { ReactComponent as PlatosDulcesIcon } from "../icons/platos-dulces.svg";
-import { ReactComponent as PlatosSaladosIcon } from "../icons/platos-salados.svg";
-import { ReactComponent as AlaCartaIcon } from "../icons/a-la-carta.svg";
-import { ReactComponent as FamiliarIcon } from "../icons/familiar.svg";
 
 const CategoriesWrapper = styled.div`
   display: flex;
@@ -46,25 +37,38 @@ const Title = styled.div`
   color: ${TEXT_COLOR_PRIMARY};
 `;
 
-const categories = [
-  { title: "Promociones", icon: <PromocionesIcon /> },
-  { title: "Dim Sum", icon: <DimSumIcon /> },
-  { title: "Menu", icon: <MenuIcon /> },
-  { title: "Sopas", icon: <SopasIcon /> },
-  { title: "Bebidas", icon: <BebidasIcon /> },
-  { title: "Platos Dulces", icon: <PlatosDulcesIcon /> },
-  { title: "Platos Salados", icon: <PlatosSaladosIcon /> },
-  { title: "A la Carta", icon: <AlaCartaIcon /> },
-  { title: "Familiar", icon: <FamiliarIcon /> },
-];
+const getImage = (name) => `https://ec-qbo.herokuapp.com/categories/${name}`;
 
-export const Categories = () => (
-  <CategoriesWrapper>
-    {categories.map((category, index) => (
-      <CategoryIcon key={`category-item-${index}`}>
-        <Circle>{category.icon}</Circle>
-        <Title>{category.title}</Title>
-      </CategoryIcon>
-    ))}
-  </CategoriesWrapper>
-);
+export const Categories = ({ items }) => {
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  function handleClick(category) {
+    setSelectedCategory(category);
+  }
+
+  return (
+    <CategoriesWrapper>
+      {selectedCategory && (
+        <Redirect
+          to={{ pathname: "/store", search: `category=${selectedCategory.id}` }}
+        />
+      )}
+      {items &&
+        items.map((category, index) => (
+          <CategoryIcon
+            key={`category-item-${index}`}
+            onClick={() => handleClick(category)}
+          >
+            <Circle>
+              <img
+                src={getImage(category.imagen)}
+                alt={category.name}
+                loading="lazy"
+              />
+            </Circle>
+            <Title>{category.name}</Title>
+          </CategoryIcon>
+        ))}
+    </CategoriesWrapper>
+  );
+};

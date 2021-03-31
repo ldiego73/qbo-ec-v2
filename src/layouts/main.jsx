@@ -1,4 +1,5 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import {
   Container,
   Content,
@@ -6,38 +7,48 @@ import {
   Header,
   BannerImage,
   Banner,
+  Delivery,
 } from "../components";
 
-const images = [
-  <BannerImage
-    src="http://rioquintana.com/wp-content/uploads/2020/01/BANNER_1.png"
-    alt="Banner 1"
-  />,
-  <BannerImage
-    src="http://rioquintana.com/wp-content/uploads/2020/01/BANNER_2.png"
-    alt="Banner 2"
-  />,
-  <BannerImage
-    src="http://rioquintana.com/wp-content/uploads/2020/01/BANNER_3.png"
-    alt="Banner 3"
-  />,
-  <BannerImage
-    src="http://rioquintana.com/wp-content/uploads/2020/01/BANNER_4.png"
-    alt="Banner 4"
-  />,
-  <BannerImage
-    src="http://rioquintana.com/wp-content/uploads/2020/01/BANNER_5.png"
-    alt="Banner 5"
-  />,
-];
+export function Layout({ banner, delivery, children }) {
+  const [banners, setBanners] = useState(null);
 
-export const Layout = ({ banner, children }) => (
-  <>
-    <Header />
-    {banner && <Banner images={images} />}
-    <Container>
-      <Content direction="column">{children}</Content>
-    </Container>
-    <Footer />
-  </>
-);
+  async function getBanners() {
+    const { data } = await axios.get("https://ec-qbo.herokuapp.com/banners");
+    const items = [];
+
+    data.forEach((item) => {
+      const { id, imagen } = item;
+      const partsImagen = imagen.split(".");
+      const newImagen = `${partsImagen[0]}.jpg`;
+
+      items.push(
+        <BannerImage
+          src={`https://ec-qbo.herokuapp.com/banners/${newImagen}`}
+          alt={`Banner ${id}`}
+        />
+      );
+    });
+    setBanners(items);
+  }
+
+  useEffect(() => {
+    getBanners();
+  }, []);
+
+  return (
+    <>
+      <Header />
+      {delivery && (
+        <Delivery>
+          Delivery a San Miguel, La Perla, Magdalena y Pueblo Libre
+        </Delivery>
+      )}
+      {banner && banners && <Banner images={banners} />}
+      <Container>
+        <Content direction="column">{children}</Content>
+      </Container>
+      <Footer />
+    </>
+  );
+}
