@@ -4,7 +4,7 @@ import styled from "styled-components";
 import {
   TEXT_COLOR_PRIMARY,
   COLOR_GRAY_LIGHT,
-} from "../../../components/variables";
+} from "@components/variables";
 
 const CategoriesWrapper = styled.div`
   display: flex;

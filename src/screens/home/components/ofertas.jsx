@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
-import { CardProduct, Title } from "../../../components";
-import { TEXT_COLOR_SECONDARY } from "../../../components/variables";
+import { CardProduct, Title } from "@components";
+import { TEXT_COLOR_SECONDARY } from "@components/variables";
 
 const OfertaWrapper = styled.div`
   display: flex;
@@ -32,29 +32,33 @@ const OfertaProducts = styled.div`
 `;
 
 export function Ofertas({ title, products }) {
-  const handleAdd = (product) => {
+  const [productId, setProductId] = useState(null);
+
+  const handleAdd = product => {
     alert(JSON.stringify(product));
   };
 
-  const handleClicked = (product) => {
-    alert(JSON.stringify(product));
+  const handleClicked = product => {
+    setProductId(product.id);
   };
 
   return (
     <OfertaWrapper>
+      {productId && <Redirect to={`/product/${productId}`} />}
       <OfertaHeader>
         <Title flex value={title} />
         <OfertaLink to="/store">Ver catálogo completo</OfertaLink>
       </OfertaHeader>
       <OfertaProducts>
-        {products.map((p, index) => (
-          <CardProduct
-            key={`oferta-product-${index}`}
-            product={p}
-            onAdd={handleAdd}
-            onClicked={handleClicked}
-          />
-        ))}
+        {products &&
+          products.map((p, index) => (
+            <CardProduct
+              key={`oferta-product-${index}`}
+              product={p}
+              onCardAdd={handleAdd}
+              onCardClick={handleClicked}
+            />
+          ))}
       </OfertaProducts>
     </OfertaWrapper>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout } from "../../layouts/main";
+import { Layout } from "@layouts/main";
 import { Redirect } from "react-router-dom";
 
 export const CheckoutScreen = () => {

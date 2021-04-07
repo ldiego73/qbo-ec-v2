@@ -55,16 +55,16 @@ const CardProductPrice = styled.div`
   color: ${TEXT_COLOR_PRIMARY};
 `;
 
-export const CardProduct = ({ product, onAdd, onClicked, width, imageHeight }) => {
+export const CardProduct = ({ product, onCardAdd, onCardClick, width, imageHeight }) => {
   const handleAdd = (p) => {
-    if (typeof onAdd === "function") {
-      onAdd(p);
+    if (typeof onCardAdd === "function") {
+      onCardAdd(p);
     }
   };
 
   const handleClicked = (p) => {
-    if (typeof onClicked === "function") {
-      onClicked(p);
+    if (typeof onCardClick === "function") {
+      onCardClick(p);
     }
   };
 

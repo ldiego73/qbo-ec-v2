@@ -3,7 +3,7 @@ import {
   COLOR_GRAY_LIGHT,
   TEXT_COLOR_PRIMARY,
   TEXT_COLOR_SECONDARY,
-} from "../../../components/variables";
+} from "@components/variables";
 
 export const Wrapper = styled.div`
   display: flex;

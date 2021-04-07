@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout } from "../../layouts/main";
+import { Layout } from "@layouts/main";
 
 export const LoginScreen = () => (
   <Layout>

@@ -1,4 +1,4 @@
-import { getPriceWithCurrency } from "../../../utils";
+import { getPriceWithCurrency } from "@utils";
 export function mapToModel(dto) {
   return {
     id: dto.id,

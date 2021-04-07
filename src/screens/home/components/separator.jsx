@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { COLOR_GRAY_LIGHT } from "../../../components/variables";
+import { COLOR_GRAY_LIGHT } from "@components/variables";
 
 export const Separator = styled.div`
     width: 100%;
