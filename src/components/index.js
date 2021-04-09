@@ -7,3 +7,4 @@ export * from "./content";
 export * from "./card/product";
 export * from "./banner";
 export * from "./delivery";
+export * from "./variables";

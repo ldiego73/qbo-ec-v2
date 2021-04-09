@@ -1,4 +1,6 @@
-import React from "react";
+import { EcommerceContext } from "@contexts/ecommerce.context";
+import { getPriceWithCurrency } from "@utils/index";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { COLOR_WHITE, TEXT_COLOR_WHITE } from "../variables";
@@ -38,11 +40,11 @@ const Action = styled(Link)`
 `;
 
 const ActionRight = styled(Action)`
-    margin-right: 32px;
+  margin-right: 32px;
 `;
 
 const ActionLeft = styled(Action)`
-    margin-left: 32px;
+  margin-left: 32px;
 `;
 
 const Separator = styled.div`
@@ -52,14 +54,26 @@ const Separator = styled.div`
   background: ${COLOR_WHITE};
 `;
 
-export const Actions = () => (
-  <ActionsWrapper>
-    <ActionRight to="/cart" align="right">
-      <CartIcon /> S/. 0.00
-    </ActionRight>
-    <Separator />
-    <ActionLeft to="/oauth/login" align="left">
-      <UserIcon /> Iniciar Sesión
-    </ActionLeft>
-  </ActionsWrapper>
-);
+export function Actions() {
+  const { cart } = useContext(EcommerceContext);
+
+  function getTotal() {
+    const neto = cart.reduce(
+      (total, product) => total + product.price * product.quantity, 0
+    );
+
+    return getPriceWithCurrency(neto);
+  }
+
+  return (
+    <ActionsWrapper>
+      <ActionRight to="/cart" align="right">
+        <CartIcon /> {getTotal()}
+      </ActionRight>
+      <Separator />
+      <ActionLeft to="/oauth/login" align="left">
+        <UserIcon /> Iniciar Sesión
+      </ActionLeft>
+    </ActionsWrapper>
+  );
+}

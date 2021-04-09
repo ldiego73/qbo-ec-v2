@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { EcommerceContext } from "@contexts/ecommerce.context";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { Link, Redirect } from "react-router-dom";
 
@@ -33,10 +34,9 @@ const OfertaProducts = styled.div`
 
 export function Ofertas({ title, products }) {
   const [productId, setProductId] = useState(null);
+  const { addProductToCart } = useContext(EcommerceContext);
 
-  const handleAdd = product => {
-    alert(JSON.stringify(product));
-  };
+  const handleAdd = product => addProductToCart(product);
 
   const handleClicked = product => {
     setProductId(product.id);

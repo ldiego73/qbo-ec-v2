@@ -1,4 +1,5 @@
-import React, { useRef, useState } from "react";
+import { EcommerceContext } from "@contexts/ecommerce.context";
+import React, { useContext, useReducer, useRef } from "react";
 import { CardProduct, Title } from "@components";
 import {
   Wrapper,
@@ -15,6 +16,8 @@ import { Layout } from "@layouts/main";
 import { useCategories } from "@core/useCategories";
 import { useProducts, useFilterProducts } from "./hooks";
 import { Redirect } from "react-router";
+import { initialState, reducer } from "./reducers/store.reducer";
+import { REDIRECT_PRODUCT_DETAIL } from "./reducers/store.action";
 
 export function StoreScreen() {
   const categories = useCategories();
@@ -26,17 +29,24 @@ export function StoreScreen() {
     findProductsByCategory,
     findProductsByName,
   } = useFilterProducts(products, query.get("category"));
-  const [redirectId, setRedirectId] = useState(null);
+  const { addProductToCart } = useContext(EcommerceContext);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const refInput = useRef(null);
 
   function redirectToDetailProduct(id) {
-    setRedirectId(id);
+    dispatch({ type: REDIRECT_PRODUCT_DETAIL, productId: id });
+  }
+
+  function handleAddProduct(p) {
+    addProductToCart(p);
   }
 
   return (
     <Layout delivery={true}>
-      {redirectId && <Redirect to={{ pathname: `/product/${redirectId}` }} />}
+      {state.productId && (
+        <Redirect to={{ pathname: `/product/${state.productId}` }} />
+      )}
       <Wrapper>
         <SideBar>
           <Title value="Nuestros productos" />
@@ -46,7 +56,7 @@ export function StoreScreen() {
               ref={refInput}
               type="text"
               placeholder="Nombre del producto"
-              onChange={(e) => findProductsByName(e.target.value)}
+              onChange={e => findProductsByName(e.target.value)}
             />
           </Search>
           <Categories>
@@ -72,6 +82,7 @@ export function StoreScreen() {
                     product={product}
                     width={280}
                     imageHeight={129}
+                    onCardAdd={(p) => handleAddProduct(p)}
                     onCardClick={() => redirectToDetailProduct(product.id)}
                   />
                 ))}

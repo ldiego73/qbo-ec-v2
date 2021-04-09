@@ -1,3 +1,4 @@
+import { getPriceWithCurrency } from "@utils/index";
 import React from "react";
 import styled from "styled-components";
 
@@ -79,12 +80,12 @@ export const CardProduct = ({ product, onCardAdd, onCardClick, width, imageHeigh
       <CardProductHeader>
         <CardProductSubTitle>{product.category}</CardProductSubTitle>
         {product.priceOld && (
-          <CardProductPriceOld>{product.priceOld}</CardProductPriceOld>
+          <CardProductPriceOld>{getPriceWithCurrency(product.priceOld)}</CardProductPriceOld>
         )}
       </CardProductHeader>
       <CardProductBody>
         <CardProductTitle>{product.name}</CardProductTitle>
-        <CardProductPrice>{product.price}</CardProductPrice>
+        <CardProductPrice>{getPriceWithCurrency(product.price)}</CardProductPrice>
       </CardProductBody>
       <CardProductFooter>
         <Button
