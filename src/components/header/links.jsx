@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import { TEXT_COLOR_WHITE } from "../variables";
 import { Link } from "react-router-dom";
@@ -24,12 +25,13 @@ const LinkWrapper = styled(Link)`
   }
 `;
 
-export const HeaderLinks = ({ links }) => (
-  <LinksWrapper>
-    {links.map((link, index) => (
-      <LinkWrapper key={`header-link-${index}`} to={link.to}>
-        {link.title}
-      </LinkWrapper>
-    ))}
-  </LinksWrapper>
-);
+export function HeaderLinks() {
+  const { t } = useTranslation();
+
+  return (
+    <LinksWrapper>
+      <LinkWrapper to="/history">{t("links.history")}</LinkWrapper>
+      <LinkWrapper to="/store">{t("links.products")}</LinkWrapper>
+    </LinksWrapper>
+  );
+}

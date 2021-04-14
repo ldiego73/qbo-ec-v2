@@ -6,7 +6,11 @@ import { LoginScreen } from "./oauth/login";
 import { StoreScreen } from "./store";
 import { DetailScreen } from "./store/detail";
 import { CartScreen } from "./cart";
-import { CheckoutScreen } from "./checkout";
+import {
+  CheckoutFormSimpleScreen,
+  CheckoutFormHooksScreen,
+  CheckoutFormSchemaScreen,
+} from "./checkout";
 import { NotFoundScreen } from "./not-found";
 
 export const Navigation = () => (
@@ -16,7 +20,21 @@ export const Navigation = () => (
     <Route exact path="/store" component={StoreScreen} />
     <Route exact path="/product/:id" component={DetailScreen} />
     <Route exact path="/cart" component={CartScreen} />
-    <Route exact path="/checkout" component={CheckoutScreen} />
+    <Route
+      exact
+      path="/checkout/form-simple"
+      component={CheckoutFormSimpleScreen}
+    />
+    <Route
+      exact
+      path="/checkout/form-hooks"
+      component={CheckoutFormHooksScreen}
+    />
+    <Route
+      exact
+      path="/checkout/form-schema"
+      component={CheckoutFormSchemaScreen}
+    />
     <Route path="*" component={NotFoundScreen} />
   </Switch>
 );

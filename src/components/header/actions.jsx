@@ -3,7 +3,16 @@ import { getPriceWithCurrency } from "@utils/index";
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { COLOR_WHITE, TEXT_COLOR_WHITE } from "../variables";
+import {
+  COLOR_PRIMARY,
+  COLOR_SECONDARY,
+  COLOR_WHITE,
+  TEXT_COLOR_WHITE,
+} from "../variables";
+import {
+  languages,
+  TranslationContext,
+} from "../../translations/translation.context";
 
 import { ReactComponent as CartIcon } from "./icons/cart.svg";
 import { ReactComponent as UserIcon } from "./icons/user.svg";
@@ -45,6 +54,7 @@ const ActionRight = styled(Action)`
 
 const ActionLeft = styled(Action)`
   margin-left: 32px;
+  margin-right: 32px;
 `;
 
 const Separator = styled.div`
@@ -54,12 +64,20 @@ const Separator = styled.div`
   background: ${COLOR_WHITE};
 `;
 
+const Language = styled.div`
+  padding: 16px;
+  cursor: pointer;
+  background: ${({ selected }) => (selected ? COLOR_SECONDARY : COLOR_PRIMARY)};
+`;
+
 export function Actions() {
+  const { language, updateLanguage } = useContext(TranslationContext);
   const { cart } = useContext(EcommerceContext);
 
   function getTotal() {
     const neto = cart.reduce(
-      (total, product) => total + product.price * product.quantity, 0
+      (total, product) => total + product.price * product.quantity,
+      0
     );
 
     return getPriceWithCurrency(neto);
@@ -74,6 +92,16 @@ export function Actions() {
       <ActionLeft to="/oauth/login" align="left">
         <UserIcon /> Iniciar Sesión
       </ActionLeft>
+      <Separator />
+      {languages.map((lng, key) => (
+        <Language
+          selected={language === lng}
+          key={`language-${key}`}
+          onClick={() => updateLanguage(lng)}
+        >
+          {lng.toUpperCase()}
+        </Language>
+      ))}
     </ActionsWrapper>
   );
 }

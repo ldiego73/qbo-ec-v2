@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Container } from "../container";
@@ -28,20 +29,18 @@ const TitleWrapper = styled(Link)`
   }
 `;
 
-const title = "SR. MING";
-const links = [
-  { title: "Nuestra Historia", to: "/history" },
-  { title: "Nuestros productos", to: "/store" },
-];
+export function Header() {
+  const { t } = useTranslation();
 
-export const Header = () => (
-  <HeaderWrapper>
-    <Container height={HEADER_HEIGHT}>
-      <Content align="center">
-        <TitleWrapper to="/">{title}</TitleWrapper>
-        <HeaderLinks links={links} />
-        <Actions />
-      </Content>
-    </Container>
-  </HeaderWrapper>
-);
+  return (
+    <HeaderWrapper>
+      <Container height={HEADER_HEIGHT}>
+        <Content align="center">
+          <TitleWrapper to="/">{t("title")}</TitleWrapper>
+          <HeaderLinks />
+          <Actions />
+        </Content>
+      </Container>
+    </HeaderWrapper>
+  );
+}
