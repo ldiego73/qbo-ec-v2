@@ -26,7 +26,7 @@ jobs:
         run: yarn test
 
       - name: Build
-        run: yarn build
+        run: SKIP_PREFLIGHT_CHECK=true yarn build
 
       - name: Archive test results
         uses: actions/upload-artifact@v1
