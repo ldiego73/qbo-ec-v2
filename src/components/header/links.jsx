@@ -1,8 +1,8 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
-import { TEXT_COLOR_WHITE } from "../variables";
 import { Link } from "react-router-dom";
+import { TEXT_COLOR_WHITE } from "../variables";
 
 const LinksWrapper = styled.div`
   margin-left: 40px;

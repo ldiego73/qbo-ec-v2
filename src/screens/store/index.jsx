@@ -1,6 +1,10 @@
 import { EcommerceContext } from "@contexts/ecommerce.context";
 import React, { useContext, useReducer, useRef } from "react";
 import { CardProduct, Title } from "@components";
+import { Layout } from "@layouts/main";
+import { useCategories } from "@core/useCategories";
+import { Redirect } from "react-router";
+import { useProducts, useFilterProducts } from "./hooks";
 import {
   Wrapper,
   SideBar,
@@ -12,10 +16,6 @@ import {
   Products,
   Product,
 } from "./styles";
-import { Layout } from "@layouts/main";
-import { useCategories } from "@core/useCategories";
-import { useProducts, useFilterProducts } from "./hooks";
-import { Redirect } from "react-router";
 import { initialState, reducer } from "./reducers/store.reducer";
 import { REDIRECT_PRODUCT_DETAIL } from "./reducers/store.action";
 
@@ -43,7 +43,7 @@ export function StoreScreen() {
   }
 
   return (
-    <Layout delivery={true}>
+    <Layout delivery>
       {state.productId && (
         <Redirect to={{ pathname: `/product/${state.productId}` }} />
       )}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   TEXT_COLOR_SECONDARY,
   TEXT_COLOR_GRAY,

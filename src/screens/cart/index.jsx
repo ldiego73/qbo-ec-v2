@@ -258,12 +258,11 @@ export function CartScreen() {
     removeProductToCart(id);
   }
 
-  const getSubTotal = () => {
-    return cart.reduce(
+  const getSubTotal = () =>
+    cart.reduce(
       (total, product) => total + product.price * product.quantity,
       0
     );
-  };
 
   const getDelivery = () => priceByMovilidad[movilidad];
   const getTotal = () => getSubTotal() + getDelivery();
@@ -359,7 +358,11 @@ export function CartScreen() {
             <TotalPagar>
               Total a Pagar: {getPriceWithCurrency(getTotal())}
             </TotalPagar>
-            <Button color="primary" value="Continuar" onClicked={() => handleContinuar()} />
+            <Button
+              color="primary"
+              value="Continuar"
+              onClicked={() => handleContinuar()}
+            />
           </CardResumen>
         </CardFlex>
       </CartContent>

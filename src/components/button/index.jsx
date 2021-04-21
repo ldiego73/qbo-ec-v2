@@ -9,13 +9,13 @@ import {
 
 function getBackground(color) {
   if (color === "primary") return COLOR_PRIMARY;
-  else if (color === "secondary") return COLOR_WHITE;
+  if (color === "secondary") return COLOR_WHITE;
   return COLOR_PRIMARY;
 }
 
 function getTextColor(color) {
   if (color === "primary") return TEXT_COLOR_WHITE;
-  else if (color === "secondary") return TEXT_COLOR_SECONDARY;
+  if (color === "secondary") return TEXT_COLOR_SECONDARY;
   return TEXT_COLOR_WHITE;
 }
 

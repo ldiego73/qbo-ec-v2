@@ -1,7 +1,7 @@
 import React from "react";
 import { Layout } from "@layouts/main";
-import { Categories, Ofertas, Separator } from "./components";
 import { useCategories } from "@core/useCategories";
+import { Categories, Ofertas, Separator } from "./components";
 import { useProducts } from "./hooks";
 
 export function HomeScreen() {
