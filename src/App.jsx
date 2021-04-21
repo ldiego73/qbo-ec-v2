@@ -1,3 +1,4 @@
+import React from "react";
 import { EcommerceProvider } from "@contexts/ecommerce.provider";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Navigation } from "./screens/navigation";

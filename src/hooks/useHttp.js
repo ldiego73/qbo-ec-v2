@@ -23,9 +23,9 @@ export function useHttp(url, options = {}) {
         if (isNotAborted()) {
           setResponse(data);
         }
-      } catch (error) {
+      } catch (err) {
         if (isNotAborted()) {
-          setError(error.message);
+          setError(err.message);
         }
       } finally {
         if (isNotAborted()) setLoading(false);

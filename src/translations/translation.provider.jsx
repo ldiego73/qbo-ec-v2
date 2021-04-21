@@ -3,7 +3,7 @@ import i18next from "i18next";
 import backend from "i18next-chained-backend";
 import httpApi from "i18next-http-backend";
 import localStorageBackend from "i18next-localstorage-backend";
-import { useLayoutEffect, useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { initReactI18next, useTranslation } from "react-i18next";
 import { languages, TranslationContext } from "./translation.context";
 

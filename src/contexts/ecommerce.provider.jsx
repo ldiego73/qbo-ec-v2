@@ -1,4 +1,4 @@
-import { useReducer, useState } from "react";
+import React, { useReducer, useState } from "react";
 import { EcommerceContext } from "./ecommerce.context";
 import {
   ADD_PRODUCT,

@@ -5,18 +5,6 @@ export function useFilterProducts(products, categoryId) {
   const [filterProducts, setFilterProducts] = useState();
   const [selectedCategory, setSelectedCategory] = useState(-1);
 
-  function findProductsByCategory(category) {
-    const { id } = category;
-
-    loadProducts(id === selectedCategory ? 0 : id);
-    setSelectedCategory(id === selectedCategory ? -1 : id);
-  }
-
-  function findProductsByName(name) {
-    loadProducts(0, name);
-    setSelectedCategory(-1);
-  }
-
   function loadProducts(category, name) {
     if (!products) return;
 
@@ -32,6 +20,18 @@ export function useFilterProducts(products, categoryId) {
         setSelectedCategory(category);
       },
     });
+  }
+
+  function findProductsByCategory(category) {
+    const { id } = category;
+
+    loadProducts(id === selectedCategory ? 0 : id);
+    setSelectedCategory(id === selectedCategory ? -1 : id);
+  }
+
+  function findProductsByName(name) {
+    loadProducts(0, name);
+    setSelectedCategory(-1);
   }
 
   useEffect(() => {

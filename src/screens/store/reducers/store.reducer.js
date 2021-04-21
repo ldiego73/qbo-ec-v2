@@ -1,3 +1,6 @@
+/* eslint-disable no-shadow */
+/* eslint-disable no-unused-vars */
+
 import { findProductsByParameters } from "@store/core/products.core";
 import {
   FILTERS_PRODUCTS_RESULT,
@@ -8,18 +11,6 @@ import {
 export function useFilterProducts(products, categoryId, name) {
   let filterProducts = [];
   let selectedCategory = -1;
-
-  function findProductsByCategory(category) {
-    const { id } = category;
-
-    loadProducts(id === selectedCategory ? 0 : id);
-    selectedCategory = id === selectedCategory ? -1 : id;
-  }
-
-  function findProductsByName(name) {
-    loadProducts(0, name);
-    selectedCategory = -1;
-  }
 
   function loadProducts(category, name) {
     if (!products) return;
@@ -36,6 +27,18 @@ export function useFilterProducts(products, categoryId, name) {
         selectedCategory = category;
       },
     });
+  }
+
+  function findProductsByCategory(category) {
+    const { id } = category;
+
+    loadProducts(id === selectedCategory ? 0 : id);
+    selectedCategory = id === selectedCategory ? -1 : id;
+  }
+
+  function findProductsByName(name) {
+    loadProducts(0, name);
+    selectedCategory = -1;
   }
 
 }
