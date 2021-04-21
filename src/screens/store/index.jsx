@@ -3,7 +3,7 @@ import React, { useContext, useReducer, useRef } from "react";
 import { CardProduct, Title } from "@components";
 import { Layout } from "@layouts/main";
 import { useCategories } from "@core/useCategories";
-import { Redirect } from "react-router";
+import { Redirect } from "react-router-dom";
 import { useProducts, useFilterProducts } from "./hooks";
 import {
   Wrapper,
