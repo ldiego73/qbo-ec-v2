@@ -12,5 +12,7 @@ const TitleWrapper = styled.h2`
 `;
 
 export const Title = ({ value, flex }) => (
-  <TitleWrapper flex={flex}>{value}</TitleWrapper>
+  <TitleWrapper data-testid="title" flex={flex}>
+    {value}
+  </TitleWrapper>
 );

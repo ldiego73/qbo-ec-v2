@@ -72,6 +72,7 @@ export const CardProduct = ({ product, onCardAdd, onCardClick, width, imageHeigh
   return (
     <CardProductWrapper width={width}>
       <CardProductImage
+        data-testid="card-product-image"
         imageHeight={imageHeight}
         src={product.image}
         loading="lazy"

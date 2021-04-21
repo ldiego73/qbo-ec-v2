@@ -1,4 +1,4 @@
 public/**
-*.test.js
+*.spec.js
 jet-*.js
 reportWebVitals.js

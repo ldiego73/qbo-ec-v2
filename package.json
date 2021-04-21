@@ -4,8 +4,8 @@
   "private": true,
   "dependencies": {
     "@hookform/resolvers": "^2.3.0",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
+    "@testing-library/jest-dom": "^5.11.10",
+    "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
     "bulma": "^0.9.2",
@@ -28,7 +28,7 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test",
+    "test": "jest --passWithNoTests",
     "eject": "craco eject",
     "lint": "eslint src -f stylish",
     "lint:report": "eslint src -f html -o reports/eslint.html"
@@ -53,6 +53,7 @@
   },
   "devDependencies": {
     "@craco/craco": "^6.1.1",
+    "@testing-library/react-hooks": "^5.1.1",
     "eslint": "^7.24.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.2.0",
@@ -62,6 +63,10 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.23.2",
     "eslint-plugin-simple-import-sort": "^7.0.0",
+    "jest": "^26.6.3",
+    "jest-html-reporters": "^2.1.4",
+    "jest-sonar-reporter": "^2.0.0",
+    "jest-svg-transformer": "^1.0.0",
     "node-sass": "^5.0.0",
     "prettier": "^2.2.1"
   }
